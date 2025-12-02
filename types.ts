@@ -28,6 +28,8 @@ export interface RoadmapItem {
     name: string;
     description: string;
     completed?: boolean;
+    autoCheckKey?: 'stars' | 'prs'; // Key for auto-checking
+    autoCheckThreshold?: number;
   }[];
 }
 
@@ -43,4 +45,13 @@ export interface Guide {
   timeEstimate: string;
   steps: GuideStep[];
   proTip: string;
+}
+
+export interface UserStats {
+  username: string;
+  avatarUrl: string;
+  totalStars: number;
+  mergedPRs: number;
+  followers: number;
+  isPro?: boolean; // Hard to detect, but we can placeholder
 }

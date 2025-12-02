@@ -110,7 +110,7 @@ export const ROADMAP: RoadmapItem[] = [
     id: 'week1',
     title: 'Beginner Quest (First Week)',
     badges: [
-      { id: 'starstruck_base', name: 'Starstruck', description: 'Get 16 stars on a repo' },
+      { id: 'starstruck_base', name: 'Starstruck', description: 'Get 16 stars on a repo', autoCheckKey: 'stars', autoCheckThreshold: 16 },
       { id: 'quickdraw', name: 'Quickdraw', description: 'Close issue in 5 min' },
       { id: 'pair', name: 'Pair Extraordinaire', description: 'Co-author a commit' },
     ]
@@ -119,9 +119,17 @@ export const ROADMAP: RoadmapItem[] = [
     id: 'month1',
     title: 'Community Builder (First Month)',
     badges: [
-      { id: 'pullshark_base', name: 'Pull Shark', description: 'Get 2 PRs merged' },
+      { id: 'pullshark_base', name: 'Pull Shark', description: 'Get 2 PRs merged', autoCheckKey: 'prs', autoCheckThreshold: 2 },
       { id: 'galaxy_base', name: 'Galaxy Brain', description: 'Answer a discussion' },
       { id: 'yolo', name: 'YOLO', description: 'Merge without review' },
+    ]
+  },
+   {
+    id: 'expert',
+    title: 'Expert Tier',
+    badges: [
+      { id: 'starstruck_bronze', name: 'Starstruck Bronze', description: 'Get 128 stars', autoCheckKey: 'stars', autoCheckThreshold: 128 },
+      { id: 'pullshark_bronze', name: 'Pull Shark Bronze', description: 'Get 16 PRs merged', autoCheckKey: 'prs', autoCheckThreshold: 16 },
     ]
   }
 ];

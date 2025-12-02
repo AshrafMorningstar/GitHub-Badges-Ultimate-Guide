@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { BADGES } from '../constants';
-import { BadgeCategory } from '../types';
+import { BadgeCategory, UserStats } from '../types';
 
-const BadgeRow: React.FC<{ badge: typeof BADGES[0] }> = ({ badge }) => {
+interface BadgeGalleryProps {
+  userStats: UserStats | null;
+}
+
+const BadgeRow: React.FC<{ badge: typeof BADGES[0]; userStats: UserStats | null }> = ({ badge, userStats }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 border-b border-github-border hover:bg-github-subtle/50 transition-colors group">
       {/* Icon & Name */}
@@ -37,8 +41,23 @@ const BadgeRow: React.FC<{ badge: typeof BADGES[0] }> = ({ badge }) => {
       {/* Tiers */}
       <div className="md:col-span-4 flex flex-col justify-center space-y-2">
         {badge.tiers ? (
-          badge.tiers.map((tier, idx) => (
-            <div key={idx} className="flex items-center text-xs font-mono">
+          badge.tiers.map((tier, idx) => {
+            // Logic to verify tier if possible
+            let isEarned = false;
+            if (userStats) {
+               if (badge.id === 'starstruck') {
+                 // Requirement format usually "16 Stars", "128 Stars"
+                 const required = parseInt(tier.requirement.split(' ')[0]);
+                 if (userStats.totalStars >= required) isEarned = true;
+               }
+               if (badge.id === 'pullshark') {
+                 const required = parseInt(tier.requirement.split(' ')[0]);
+                 if (userStats.mergedPRs >= required) isEarned = true;
+               }
+            }
+
+            return (
+            <div key={idx} className={`flex items-center text-xs font-mono p-1 rounded ${isEarned ? 'bg-github-success/10' : ''}`}>
                <div className="flex space-x-0.5 mr-3 w-16">
                  {[1, 2, 3, 4].map((bar) => (
                    <div 
@@ -48,9 +67,10 @@ const BadgeRow: React.FC<{ badge: typeof BADGES[0] }> = ({ badge }) => {
                  ))}
                </div>
                <span className={`${tier.color} font-bold mr-2 w-12`}>{tier.name}</span>
-               <span className="text-github-muted truncate">{tier.requirement}</span>
+               <span className="text-github-muted truncate flex-1">{tier.requirement}</span>
+               {isEarned && <span className="text-github-success ml-2">✓</span>}
             </div>
-          ))
+          )})
         ) : (
            <span className="text-xs text-github-muted italic">No distinct tiers</span>
         )}
@@ -59,7 +79,7 @@ const BadgeRow: React.FC<{ badge: typeof BADGES[0] }> = ({ badge }) => {
   );
 };
 
-const BadgeGallery: React.FC = () => {
+const BadgeGallery: React.FC<BadgeGalleryProps> = ({ userStats }) => {
   const [activeTab, setActiveTab] = useState<BadgeCategory>('achievement');
 
   const filteredBadges = BADGES.filter(b => b.category === activeTab);
@@ -69,7 +89,10 @@ const BadgeGallery: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-github-border pb-4">
         <div>
           <h2 className="text-3xl font-bold text-github-header mb-2">The Badge Gallery</h2>
-          <p className="text-github-muted">Explore the complete collection of known badges.</p>
+          <p className="text-github-muted">
+            Explore the complete collection of known badges. 
+            {userStats && <span className="text-github-success ml-2">(Syncing with @{userStats.username})</span>}
+          </p>
         </div>
         
         <div className="flex gap-2 mt-4 md:mt-0">
@@ -97,7 +120,7 @@ const BadgeGallery: React.FC = () => {
         
         <div className="divide-y divide-github-border">
           {filteredBadges.map(badge => (
-            <BadgeRow key={badge.id} badge={badge} />
+            <BadgeRow key={badge.id} badge={badge} userStats={userStats} />
           ))}
           {filteredBadges.length === 0 && (
             <div className="p-12 text-center text-github-muted">
