@@ -2,11 +2,11 @@ import { Badge, RoadmapItem, Guide } from './types';
 import { Trophy, Star, Zap, GitPullRequest, Users, Shield, Heart, Radio, Box } from 'lucide-react';
 
 export const HERO_BADGES = [
-  { icon: <Zap size={32} className="text-yellow-400" />, name: "Quickdraw" },
-  { icon: <Star size={32} className="text-yellow-200" />, name: "Starstruck" },
-  { icon: <GitPullRequest size={32} className="text-blue-400" />, name: "Pull Shark" },
-  { icon: <Heart size={32} className="text-pink-400" />, name: "Sponsor" },
-  { icon: <Radio size={32} className="text-red-500" />, name: "Mars 2020" },
+  { icon: <Zap size={32} className="text-yellow-600 dark:text-yellow-400" />, name: "Quickdraw" },
+  { icon: <Star size={32} className="text-yellow-500 dark:text-yellow-200" />, name: "Starstruck" },
+  { icon: <GitPullRequest size={32} className="text-blue-600 dark:text-blue-400" />, name: "Pull Shark" },
+  { icon: <Heart size={32} className="text-pink-600 dark:text-pink-400" />, name: "Sponsor" },
+  { icon: <Radio size={32} className="text-red-600 dark:text-red-500" />, name: "Mars 2020" },
 ];
 
 export const BADGES: Badge[] = [
@@ -20,9 +20,9 @@ export const BADGES: Badge[] = [
     howToEarn: 'Receive stars on a repository you own',
     tiers: [
       { name: 'Base', requirement: '16 Stars', color: 'text-github-muted', filled: 1 },
-      { name: 'Bronze', requirement: '128 Stars', color: 'text-orange-300', filled: 2 },
-      { name: 'Silver', requirement: '512 Stars', color: 'text-gray-300', filled: 3 },
-      { name: 'Gold', requirement: '4096 Stars', color: 'text-yellow-400', filled: 4 },
+      { name: 'Bronze', requirement: '128 Stars', color: 'text-orange-600 dark:text-orange-300', filled: 2 },
+      { name: 'Silver', requirement: '512 Stars', color: 'text-slate-500 dark:text-gray-300', filled: 3 },
+      { name: 'Gold', requirement: '4096 Stars', color: 'text-yellow-600 dark:text-yellow-400', filled: 4 },
     ]
   },
   {
@@ -34,7 +34,7 @@ export const BADGES: Badge[] = [
     rarity: 'Rare',
     howToEarn: 'Close an issue or PR within 5 minutes of opening',
     tiers: [
-      { name: 'One-time', requirement: 'Close within 5m', color: 'text-yellow-400', filled: 4 },
+      { name: 'One-time', requirement: 'Close within 5m', color: 'text-yellow-600 dark:text-yellow-400', filled: 4 },
     ]
   },
   {
@@ -47,9 +47,9 @@ export const BADGES: Badge[] = [
     howToEarn: 'Have your Pull Requests merged into repositories',
     tiers: [
       { name: 'Base', requirement: '2 PRs', color: 'text-github-muted', filled: 1 },
-      { name: 'Bronze', requirement: '16 PRs', color: 'text-orange-300', filled: 2 },
-      { name: 'Silver', requirement: '128 PRs', color: 'text-gray-300', filled: 3 },
-      { name: 'Gold', requirement: '1024 PRs', color: 'text-yellow-400', filled: 4 },
+      { name: 'Bronze', requirement: '16 PRs', color: 'text-orange-600 dark:text-orange-300', filled: 2 },
+      { name: 'Silver', requirement: '128 PRs', color: 'text-slate-500 dark:text-gray-300', filled: 3 },
+      { name: 'Gold', requirement: '1024 PRs', color: 'text-yellow-600 dark:text-yellow-400', filled: 4 },
     ]
   },
   {
@@ -62,9 +62,9 @@ export const BADGES: Badge[] = [
     howToEarn: 'Have your answers accepted in GitHub Discussions',
     tiers: [
       { name: 'Base', requirement: '2 Answers', color: 'text-github-muted', filled: 1 },
-      { name: 'Bronze', requirement: '8 Answers', color: 'text-orange-300', filled: 2 },
-      { name: 'Silver', requirement: '16 Answers', color: 'text-gray-300', filled: 3 },
-      { name: 'Gold', requirement: '32 Answers', color: 'text-yellow-400', filled: 4 },
+      { name: 'Bronze', requirement: '8 Answers', color: 'text-orange-600 dark:text-orange-300', filled: 2 },
+      { name: 'Silver', requirement: '16 Answers', color: 'text-slate-500 dark:text-gray-300', filled: 3 },
+      { name: 'Gold', requirement: '32 Answers', color: 'text-yellow-600 dark:text-yellow-400', filled: 4 },
     ]
   },
   {
@@ -76,7 +76,7 @@ export const BADGES: Badge[] = [
     rarity: 'Epic',
     howToEarn: 'Merge a Pull Request without code review (admin override)',
     tiers: [
-        { name: 'One-time', requirement: 'Merge without review', color: 'text-green-400', filled: 4 },
+        { name: 'One-time', requirement: 'Merge without review', color: 'text-green-600 dark:text-green-400', filled: 4 },
     ]
   },
   {
@@ -85,6 +85,7 @@ export const BADGES: Badge[] = [
     name: 'GitHub Sponsor',
     description: 'Supporting open source',
     category: 'highlight',
+    rarity: 'Epic',
     howToEarn: 'Sponsor an open source developer or organization via GitHub Sponsors',
   },
   {
@@ -93,6 +94,7 @@ export const BADGES: Badge[] = [
     name: 'GitHub Pro',
     description: 'Premium member',
     category: 'highlight',
+    rarity: 'Common',
     howToEarn: 'Subscribe to GitHub Pro plan',
   },
   {
@@ -101,6 +103,7 @@ export const BADGES: Badge[] = [
     name: 'Arctic Code Vault',
     description: 'Code preserved for eternity',
     category: 'retired',
+    rarity: 'Legendary',
     howToEarn: 'Contributed code to a repository included in the 2020 Snapshot',
   }
 ];

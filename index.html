@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -18,17 +19,34 @@
             },
             colors: {
               github: {
-                bg: '#0d1117',
-                subtle: '#161b22',
-                border: '#30363d',
-                text: '#c9d1d9',
-                muted: '#8b949e',
-                accent: '#58a6ff',
-                success: '#238636',
-                warning: '#d29922',
-                danger: '#da3633',
-                purple: '#8957e5',
-                header: '#f0f6fc'
+                bg: 'var(--github-bg)',
+                subtle: 'var(--github-subtle)',
+                border: 'var(--github-border)',
+                text: 'var(--github-text)',
+                muted: 'var(--github-muted)',
+                accent: 'var(--github-accent)',
+                success: 'var(--github-success)',
+                warning: 'var(--github-warning)',
+                danger: 'var(--github-danger)',
+                purple: 'var(--github-purple)',
+                header: 'var(--github-header)'
+              }
+            },
+            animation: {
+              'blob': 'blob 7s infinite',
+              'gradient-slow': 'gradient 15s ease infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              gradient: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
+                '100%': { backgroundPosition: '0% 50%' },
               }
             }
           }
@@ -36,23 +54,61 @@
       }
     </script>
     <style>
-      body {
-        background-color: #0d1117;
-        color: #c9d1d9;
+      :root {
+        /* Light Theme (Default) */
+        --github-bg: #ffffff;
+        --github-subtle: #f6f8fa;
+        --github-border: #d0d7de;
+        --github-text: #24292f;
+        --github-muted: #57606a;
+        --github-accent: #0969da;
+        --github-success: #1a7f37;
+        --github-warning: #9a6700;
+        --github-danger: #cf222e;
+        --github-purple: #8250df;
+        --github-header: #1f2328;
       }
+
+      .dark {
+        /* Dark Theme Override */
+        --github-bg: #0d1117;
+        --github-subtle: #161b22;
+        --github-border: #30363d;
+        --github-text: #c9d1d9;
+        --github-muted: #8b949e;
+        --github-accent: #58a6ff;
+        --github-success: #238636;
+        --github-warning: #d29922;
+        --github-danger: #da3633;
+        --github-purple: #8957e5;
+        --github-header: #f0f6fc;
+      }
+
+      body {
+        background-color: var(--github-bg);
+        color: var(--github-text);
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+      
+      .premium-gradient-bg {
+        background: linear-gradient(-45deg, var(--github-bg), var(--github-subtle), var(--github-bg), var(--github-subtle));
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
-        width: 10px;
+        width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #0d1117;
+        background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #30363d;
-        border-radius: 5px;
+        background: var(--github-border);
+        border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #8b949e;
+        background: var(--github-muted);
       }
     </style>
   <script type="importmap">
